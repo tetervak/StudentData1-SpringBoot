@@ -1,7 +1,5 @@
 package ca.tetervak.studentdata.repository;
 
-import javax.validation.constraints.*;
-
 public class StudentEntityJdbc {
 
     private int id = 0;
