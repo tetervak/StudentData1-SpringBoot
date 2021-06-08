@@ -9,14 +9,14 @@ final class StudentRowMapperJdbc implements RowMapper<StudentEntityJdbc> {
 
     @Override
     public StudentEntityJdbc mapRow(ResultSet rs, int rowNum) throws SQLException {
-        StudentEntityJdbc form = new StudentEntityJdbc();
-        form.setId(rs.getInt("id"));
-        form.setFirstName(rs.getString("first_name"));
-        form.setLastName(rs.getString("last_name"));
-        form.setProgramName(rs.getString("program_name"));
-        form.setProgramYear(rs.getInt("program_year"));
-        form.setProgramCoop(rs.getBoolean("program_coop"));
-        form.setProgramInternship(rs.getBoolean("program_internship"));
-        return form;
+        StudentEntityJdbc entityJdbc = new StudentEntityJdbc();
+        entityJdbc.setId(rs.getInt("id"));
+        entityJdbc.setFirstName(rs.getString("first_name"));
+        entityJdbc.setLastName(rs.getString("last_name"));
+        entityJdbc.setProgramName(rs.getString("program_name"));
+        entityJdbc.setProgramYear(rs.getInt("program_year"));
+        entityJdbc.setProgramCoop(rs.getBoolean("program_coop"));
+        entityJdbc.setProgramInternship(rs.getBoolean("program_internship"));
+        return entityJdbc;
     }
 }
