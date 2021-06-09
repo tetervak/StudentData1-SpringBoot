@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "student")
-public class StudentEntityJpa implements Serializable {
+public class StudentEntityJpa {
 
     @Column(name = "id")
     @Id
