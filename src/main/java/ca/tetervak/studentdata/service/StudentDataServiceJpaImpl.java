@@ -34,8 +34,8 @@ public class StudentDataServiceJpaImpl implements StudentDataService {
         form.setLastName(student.getLastName());
         form.setProgramName(student.getProgramName());
         form.setProgramYear(student.getProgramYear());
-        form.setProgramCoop(student.isProgramCoop());
-        form.setProgramInternship(student.isProgramInternship());
+        form.setProgramCoop(student.getProgramCoop());
+        form.setProgramInternship(student.getProgramInternship());
     }
 
     public void insertStudentForm(StudentForm form) {
