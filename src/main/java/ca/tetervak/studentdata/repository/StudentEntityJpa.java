@@ -33,8 +33,6 @@ public class StudentEntityJpa {
     public StudentEntityJpa() {
     }
 
-    ;
-
     public Integer getId() {
         return id;
     }
