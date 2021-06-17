@@ -3,6 +3,7 @@ package ca.tetervak.studentdata.repository;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -31,15 +32,9 @@ public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc 
         String update = "INSERT INTO student "
                 + "(first_name, last_name, program_name, program_year, program_coop, program_internship) "
                 + "VALUES "
-                + "(:first_name, :last_name, :program_name, :program_year, :program_coop, :program_internship)";
-        MapSqlParameterSource params = new MapSqlParameterSource();
+                + "(:firstName, :lastName, :programName, :programYear, :programCoop, :programInternship)";
+        BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(student);
         GeneratedKeyHolder keys = new GeneratedKeyHolder();
-        params.addValue("first_name", student.getFirstName().trim());
-        params.addValue("last_name", student.getLastName().trim());
-        params.addValue("program_name", student.getProgramName());
-        params.addValue("program_year", student.getProgramYear());
-        params.addValue("program_coop", student.isProgramCoop());
-        params.addValue("program_internship", student.isProgramInternship());
         namedParameterJdbcTemplate.update(update, params, keys);
         student.setId(keys.getKey()!=null?keys.getKey().intValue():0);
     }
