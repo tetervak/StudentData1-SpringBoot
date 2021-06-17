@@ -2,17 +2,16 @@
 package ca.tetervak.studentdata.repository;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc {
@@ -41,13 +40,14 @@ public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc 
 
     @Override
     public StudentEntityJdbc get(int id) {
-        String query = "SELECT * FROM student WHERE ID = :id";
+        String query = "SELECT * FROM student WHERE id = :id";
         MapSqlParameterSource params = new MapSqlParameterSource();
         StudentEntityJdbc student = null;
         params.addValue("id", id);
+        RowMapper<StudentEntityJdbc> rowMapper = new BeanPropertyRowMapper<>(StudentEntityJdbc.class);
         try {
             student = namedParameterJdbcTemplate.queryForObject(
-                    query, params, new StudentRowMapperJdbc());
+                    query, params, rowMapper);
         } catch (DataAccessException e) {
             // the code above throws an exception if the record is not found
         }
@@ -56,9 +56,10 @@ public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc 
 
     @Override
     public List<StudentEntityJdbc> getAll() {
+        RowMapper<StudentEntityJdbc> rowMapper = new BeanPropertyRowMapper<>(StudentEntityJdbc.class);
         return jdbcTemplate.query(
                 "SELECT * FROM student ORDER BY last_name, first_name",
-                new StudentRowMapperJdbc());
+                rowMapper);
     }
 
     @Override
