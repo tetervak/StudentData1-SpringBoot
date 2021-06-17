@@ -34,11 +34,11 @@
         </p>
         <p>
             <label class="group_label">Co-op:</label>
-            <span class="output" th:text="*{programCoop}">yes</span>
+            <span class="output" th:text="*{programCoop}?'yes':'no'">yes</span>
         </p>
         <p>
             <label class="group_label">Internship:</label>
-            <span class="output" th:text="*{programInternship}">no</span>
+            <span class="output" th:text="*{programInternship}?'yes':'no'">no</span>
         </p>
     </div>
     <p><a href="EditStudent.html" th:href="@{../EditStudent(id=${student.id})}">Edit Student</a></p>
