@@ -5,6 +5,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
@@ -46,9 +47,9 @@ public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc 
     @Override
     public StudentEntityJdbc get(int id) {
         String query = "SELECT * FROM student WHERE ID = :id";
-        Map<String, Object> params = new HashMap<>();
+        MapSqlParameterSource params = new MapSqlParameterSource();
         StudentEntityJdbc student = null;
-        params.put("id", id);
+        params.addValue("id", id);
         try {
             student = namedParameterJdbcTemplate.queryForObject(
                     query, params, new StudentRowMapperJdbc());
