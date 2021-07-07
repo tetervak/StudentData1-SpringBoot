@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
@@ -32,7 +33,7 @@ public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc 
                 + "(first_name, last_name, program_name, program_year, program_coop, program_internship) "
                 + "VALUES "
                 + "(:firstName, :lastName, :programName, :programYear, :programCoop, :programInternship)";
-        BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(student);
+        SqlParameterSource params = new BeanPropertySqlParameterSource(student);
         GeneratedKeyHolder keys = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(update, params, keys);
         student.setId(keys.getKey()!=null?keys.getKey().intValue():0);
