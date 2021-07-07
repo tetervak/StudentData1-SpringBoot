@@ -61,6 +61,7 @@ public class StudentDataController {
         } else {
             logger.trace("the user inputs are correct");
             studentDataService.insertStudentForm(form);
+            logger.debug("id = " + form.getId());
             return "redirect:ConfirmInsert/" + form.getId();
         }
     }
@@ -68,6 +69,7 @@ public class StudentDataController {
     @GetMapping("/ConfirmInsert/{id}")
     public String confirmInsert(@PathVariable(name = "id") String strId, Model model){
         logger.trace("confirmInsert() is called");
+        logger.debug("id = " + strId);
         try {
             int id = Integer.parseInt(strId);
             logger.trace("looking for the data in the database");
@@ -104,6 +106,7 @@ public class StudentDataController {
     @GetMapping("StudentDetails/{id}")
     public String studentDetails(@PathVariable String id, Model model){
         logger.trace("studentDetails() is called");
+        logger.debug("id = " + id);
         try {
             StudentForm form = studentDataService.getStudentForm(Integer.parseInt(id));
             if (form != null) {
@@ -141,6 +144,7 @@ public class StudentDataController {
     @PostMapping("/RemoveStudent")
     public String removeStudent(@RequestParam String id) {
         logger.trace("removeStudent() is called");
+        logger.debug("id = " + id);
         try {
             studentDataService.deleteStudentForm(Integer.parseInt(id));
         } catch (NumberFormatException e) {
@@ -153,6 +157,7 @@ public class StudentDataController {
     @GetMapping("/EditStudent")
     public String editStudent(@RequestParam String id, Model model) {
         logger.trace("editStudent() is called");
+        logger.debug("id = " + id);
         try {
             StudentForm form = studentDataService.getStudentForm(Integer.parseInt(id));
             if (form != null) {
