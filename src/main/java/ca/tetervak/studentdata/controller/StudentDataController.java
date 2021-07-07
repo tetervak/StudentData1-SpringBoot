@@ -51,6 +51,7 @@ public class StudentDataController {
             BindingResult bindingResult,
             Model model){
         logger.trace("insertStudent() is called");
+        logger.debug("form = " + form);
         // checking for the input validation errors
         if (bindingResult.hasErrors()) {
             logger.trace("input validation errors");
@@ -175,6 +176,7 @@ public class StudentDataController {
             BindingResult bindingResult,
             Model model) {
         logger.trace("updateStudent() is called");
+        logger.debug("form = " + form);
         // checking for the input validation errors
         if (bindingResult.hasErrors()) {
             logger.trace("input validation errors");
