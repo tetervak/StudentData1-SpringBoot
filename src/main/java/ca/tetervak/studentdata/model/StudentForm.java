@@ -89,6 +89,17 @@ public class StudentForm implements Serializable {
         this.programInternship = internship;
     }
 
-
+    @Override
+    public String toString() {
+        return "StudentForm{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", programName='" + programName + '\'' +
+                ", programYear=" + programYear +
+                ", programCoop=" + programCoop +
+                ", programInternship=" + programInternship +
+                '}';
+    }
 }
 
