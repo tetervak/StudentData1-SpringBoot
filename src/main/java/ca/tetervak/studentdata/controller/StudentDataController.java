@@ -59,6 +59,7 @@ public class StudentDataController {
         } else {
             log.trace("the user inputs are correct");
             studentDataService.insertStudentForm(form);
+            log.debug("id = " + form.getId());
             return "redirect:ConfirmInsert/" + form.getId();
         }
     }
@@ -66,6 +67,7 @@ public class StudentDataController {
     @GetMapping("/ConfirmInsert/{id}")
     public String confirmInsert(@PathVariable(name = "id") String strId, Model model){
         log.trace("confirmInsert() is called");
+        log.debug("id = " + strId);
         try {
             int id = Integer.parseInt(strId);
             log.trace("looking for the data in the database");
@@ -102,6 +104,7 @@ public class StudentDataController {
     @GetMapping("StudentDetails/{id}")
     public String studentDetails(@PathVariable String id, Model model){
         log.trace("studentDetails() is called");
+        log.debug("id = " + id);
         try {
             StudentForm form = studentDataService.getStudentForm(Integer.parseInt(id));
             if (form != null) {
@@ -121,6 +124,7 @@ public class StudentDataController {
     @GetMapping("/DeleteStudent")
     public String deleteStudent(@RequestParam String id, Model model) {
         log.trace("deleteStudent() is called");
+        log.debug("id = " + id);
         try {
             StudentForm form = studentDataService.getStudentForm(Integer.parseInt(id));
             if (form != null) {
@@ -139,6 +143,7 @@ public class StudentDataController {
     @PostMapping("/RemoveStudent")
     public String removeStudent(@RequestParam String id) {
         log.trace("removeStudent() is called");
+        log.debug("id = " + id);
         try {
             studentDataService.deleteStudentForm(Integer.parseInt(id));
         } catch (NumberFormatException e) {
@@ -151,6 +156,7 @@ public class StudentDataController {
     @GetMapping("/EditStudent")
     public String editStudent(@RequestParam String id, Model model) {
         log.trace("editStudent() is called");
+        log.debug("id = " + id);
         try {
             StudentForm form = studentDataService.getStudentForm(Integer.parseInt(id));
             if (form != null) {
@@ -174,6 +180,7 @@ public class StudentDataController {
             BindingResult bindingResult,
             Model model) {
         log.trace("updateStudent() is called");
+        log.debug("form = " + form);
         // checking for the input validation errors
         if (bindingResult.hasErrors()) {
             log.trace("input validation errors");
