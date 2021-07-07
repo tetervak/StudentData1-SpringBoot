@@ -90,6 +90,7 @@ public class StudentDataController {
     public ModelAndView listStudents() {
         log.trace("listStudents() is called");
         List<StudentForm> list = studentDataService.getAllStudentForms();
+        log.debug("list size = " + list.size());
         return new ModelAndView("ListStudents",
                                 "students", list);
     }
