@@ -25,11 +25,11 @@
             <td th:text="${s.firstName}">Bart</td>
             <td th:text="${s.lastName}">Simpson</td>
             <td>
-                <a href="StudentDetails.html" th:href="@{StudentDetails/{id}(id=${s.id})}">Details</a>
+                <a href="StudentDetails.html" th:href="@{student-details/{id}(id=${s.id})}">Details</a>
                 &nbsp;|&nbsp;
-                <a href="EditStudent.html" th:href="@{EditStudent(id=${s.id})}">Edit</a>
+                <a href="EditStudent.html" th:href="@{edit-student(id=${s.id})}">Edit</a>
                 &nbsp;|&nbsp;
-                <a href="DeleteStudent.html" th:href="@{DeleteStudent(id=${s.id})}">Delete</a>
+                <a href="DeleteStudent.html" th:href="@{delete-student(id=${s.id})}">Delete</a>
             </td>
         </tr>
         <!--/*-->
@@ -48,9 +48,9 @@
         <!--*/-->
     </table>
     <p class="message" th:if="${#lists.isEmpty(students)}">No student data</p>
-    <p><a href="Index.html" th:href="@{Index}">Index</a></p>
-    <p><a href="AddStudent.html" th:href="@{AddStudent}">Add Student</a></p>
-    <p><a href="ListStudents.html" th:href="@{DeleteAll}">DeleteAll</a></p>
+    <p><a href="Index.html" th:href="@{index}">Index</a></p>
+    <p><a href="AddStudent.html" th:href="@{add-student}">Add Student</a></p>
+    <p><a href="ListStudents.html" th:href="@{delete-all}">Delete All</a></p>
 </main>
 </body>
 </html>

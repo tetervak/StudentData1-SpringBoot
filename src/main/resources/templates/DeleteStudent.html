@@ -41,14 +41,14 @@
         </p>
     </div>
     <form method="post"
-          th:action="@{RemoveStudent}" action="ListStudents.html">
+          th:action="@{remove-student}" action="ListStudents.html">
         <input type="hidden" name="id" th:value="${student.id}">
         <input type="submit" value="Remove Record">
     </form>
 
-    <p><a href="Index.html" th:href="@{Index}">Index</a></p>
-    <p><a href="AddStudent.html" th:href="@{AddStudent}">Add Student</a></p>
-    <p><a href="ListStudents.html" th:href="@{ListStudents}">List Students</a></p>
+    <p><a href="Index.html" th:href="@{index}">Index</a></p>
+    <p><a href="AddStudent.html" th:href="@{add-student}">Add Student</a></p>
+    <p><a href="ListStudents.html" th:href="@{list-students}">List Students</a></p>
 </main>
 </body>
 </html>

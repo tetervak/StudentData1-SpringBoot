@@ -13,7 +13,7 @@
 <main>
     <h1>Edit Record</h1>
     <form method="post"
-          th:action="@{UpdateStudent}" action="StudentDetails.html"
+          th:action="@{update-student}" action="StudentDetails.html"
           th:object="${form}">
         <div th:if="${#fields.hasErrors('*')}">
             <h3 class="error">Input Errors</h3>
@@ -69,8 +69,8 @@
             <input type="submit" value="Send"/>
         </p>
     </form>
-    <p><a href="Index.html" th:href="@{Index}">Index</a></p>
-    <p><a href="ListStudents.html" th:href="@{ListStudents}">List Students</a></p>
+    <p><a href="Index.html" th:href="@{index}">Index</a></p>
+    <p><a href="ListStudents.html" th:href="@{list-students}">List Students</a></p>
 </main>
 </body>
 </html>
