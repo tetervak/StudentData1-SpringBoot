@@ -1,4 +1,4 @@
-package ca.tetervak.studentdata.service;
+package ca.tetervak.studentdata.data.service;
 
 
 import ca.tetervak.studentdata.model.StudentForm;

@@ -1,5 +1,5 @@
 /* Alex Tetervak, Sheridan College, Ontario */
-package ca.tetervak.studentdata.repository;
+package ca.tetervak.studentdata.data.repository;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

@@ -1,7 +1,7 @@
 package ca.tetervak.studentdata.controller;
 
 import ca.tetervak.studentdata.model.StudentForm;
-import ca.tetervak.studentdata.service.StudentDataService;
+import ca.tetervak.studentdata.data.service.StudentDataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

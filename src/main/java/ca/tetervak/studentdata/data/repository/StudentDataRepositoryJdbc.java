@@ -1,6 +1,6 @@
 /* Alex Tetervak, Sheridan College, Ontario */
 
-package ca.tetervak.studentdata.repository;
+package ca.tetervak.studentdata.data.repository;
 
 import java.util.List;
 

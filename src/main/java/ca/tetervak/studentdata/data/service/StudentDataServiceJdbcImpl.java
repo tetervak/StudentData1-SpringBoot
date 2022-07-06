@@ -1,10 +1,10 @@
 /* Alex Tetervak, Sheridan College, Ontario */
-package ca.tetervak.studentdata.service;
+package ca.tetervak.studentdata.data.service;
 
 
 import ca.tetervak.studentdata.model.StudentForm;
-import ca.tetervak.studentdata.repository.StudentDataRepositoryJdbc;
-import ca.tetervak.studentdata.repository.StudentEntityJdbc;
+import ca.tetervak.studentdata.data.repository.StudentDataRepositoryJdbc;
+import ca.tetervak.studentdata.data.repository.StudentEntityJdbc;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
