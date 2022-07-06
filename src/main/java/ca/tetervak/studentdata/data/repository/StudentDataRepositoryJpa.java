@@ -1,4 +1,4 @@
-package ca.tetervak.studentdata.repository;
+package ca.tetervak.studentdata.data.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

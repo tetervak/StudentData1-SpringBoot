@@ -1,7 +1,7 @@
-package ca.tetervak.studentdata.service;
+package ca.tetervak.studentdata.data.service;
 
-import ca.tetervak.studentdata.repository.StudentDataRepositoryJpa;
-import ca.tetervak.studentdata.repository.StudentEntityJpa;
+import ca.tetervak.studentdata.data.repository.StudentDataRepositoryJpa;
+import ca.tetervak.studentdata.data.repository.StudentEntityJpa;
 import ca.tetervak.studentdata.model.StudentForm;
 import org.springframework.stereotype.Service;
 
