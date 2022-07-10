@@ -26,6 +26,7 @@ public class StudentDataController {
     private final StudentDataService studentDataService;
 
     public StudentDataController(StudentDataService studentDataService){
+        log.trace("constructor is called");
         this.studentDataService = studentDataService;
     }
 

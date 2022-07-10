@@ -1,10 +1,11 @@
 /* Alex Tetervak, Sheridan College, Ontario */
 package ca.tetervak.studentdata.data.service;
 
-
 import ca.tetervak.studentdata.model.StudentForm;
 import ca.tetervak.studentdata.data.repository.StudentDataRepositoryJdbc;
 import ca.tetervak.studentdata.data.repository.StudentEntityJdbc;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,13 +14,17 @@ import java.util.List;
 @Service
 public class StudentDataServiceJdbcImpl implements StudentDataService {
 
+    private final Logger log = LoggerFactory.getLogger(StudentDataService.class);
+
     StudentDataRepositoryJdbc studentDataRepositoryJdbc;
 
     public StudentDataServiceJdbcImpl(StudentDataRepositoryJdbc repository){
+        log.trace("constructor is called");
         this.studentDataRepositoryJdbc = repository;
     }
 
-    private static void copyFormToEntity(StudentForm form, StudentEntityJdbc student){
+    private void copyFormToEntity(StudentForm form, StudentEntityJdbc student){
+        log.trace("copyFormToEntity() is called");
         //student.setId(form.getId());
         student.setFirstName(form.getFirstName());
         student.setLastName(form.getLastName());
@@ -29,7 +34,8 @@ public class StudentDataServiceJdbcImpl implements StudentDataService {
         student.setProgramInternship(form.isProgramInternship());
     }
 
-    private static void copyEntityToForm(StudentEntityJdbc student, StudentForm form){
+    private void copyEntityToForm(StudentEntityJdbc student, StudentForm form){
+        log.trace("copyEntityToForm() is called");
         form.setId(student.getId());
         form.setFirstName(student.getFirstName());
         form.setLastName(student.getLastName());
@@ -41,6 +47,7 @@ public class StudentDataServiceJdbcImpl implements StudentDataService {
 
 
     public void insertStudentForm(StudentForm form){
+        log.trace("insertStudentForm() is called");
         StudentEntityJdbc student = new StudentEntityJdbc();
         copyFormToEntity(form, student);
         studentDataRepositoryJdbc.insert(student);
@@ -48,6 +55,7 @@ public class StudentDataServiceJdbcImpl implements StudentDataService {
     }
     
     public StudentForm getStudentForm(int id){
+        log.trace("getStudentForm() is called");
         StudentEntityJdbc student = studentDataRepositoryJdbc.get(id);
         if(student != null){
             StudentForm form = new StudentForm();
@@ -60,6 +68,7 @@ public class StudentDataServiceJdbcImpl implements StudentDataService {
     }
     
     public List<StudentForm> getAllStudentForms(){
+        log.trace("getAllStudentForms() is called");
         List<StudentForm> forms = new ArrayList<>();
         List<StudentEntityJdbc> students = studentDataRepositoryJdbc.getAll();
         for(StudentEntityJdbc entity: students){
@@ -71,6 +80,7 @@ public class StudentDataServiceJdbcImpl implements StudentDataService {
     }
     
     public void updateStudentForm(StudentForm form){
+        log.trace("updateStudentForm() is called");
         StudentEntityJdbc student = studentDataRepositoryJdbc.get(form.getId());
         if(student != null){
             copyFormToEntity(form, student);
@@ -79,10 +89,12 @@ public class StudentDataServiceJdbcImpl implements StudentDataService {
     }
     
     public void deleteStudentForm(int id){
-       studentDataRepositoryJdbc.delete(id);
+        log.trace("deleteStudentForm() is called");
+        studentDataRepositoryJdbc.delete(id);
     }
     
     public void deleteAllStudentForms(){
+        log.trace("deleteAllStudentForms() is called");
         studentDataRepositoryJdbc.deleteAll();
     }
 }
