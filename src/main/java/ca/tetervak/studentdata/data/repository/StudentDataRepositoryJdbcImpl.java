@@ -1,6 +1,8 @@
 /* Alex Tetervak, Sheridan College, Ontario */
 package ca.tetervak.studentdata.data.repository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,18 +19,22 @@ import java.util.List;
 @Repository
 public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc {
 
+    private final Logger log = LoggerFactory.getLogger(StudentDataRepositoryJdbc.class);
+
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final JdbcTemplate jdbcTemplate;
 
     public StudentDataRepositoryJdbcImpl(
             NamedParameterJdbcTemplate namedParameterJdbcTemplate,
             JdbcTemplate jdbcTemplate){
+        log.trace("constructor is called");
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
     public void insert(StudentEntityJdbc student) {
+        log.trace("insert() is called");
         String update = "INSERT INTO student "
                 + "(first_name, last_name, program_name, program_year, program_coop, program_internship) "
                 + "VALUES "
@@ -41,6 +47,7 @@ public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc 
 
     @Override
     public StudentEntityJdbc get(int id) {
+        log.trace("get() is called");
         String query = "SELECT * FROM student WHERE id = :id";
         MapSqlParameterSource params = new MapSqlParameterSource();
         StudentEntityJdbc student = null;
@@ -57,6 +64,7 @@ public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc 
 
     @Override
     public List<StudentEntityJdbc> getAll() {
+        log.trace("getAll() is called");
         RowMapper<StudentEntityJdbc> rowMapper = new BeanPropertyRowMapper<>(StudentEntityJdbc.class);
         return jdbcTemplate.query(
                 "SELECT * FROM student ORDER BY last_name, first_name",
@@ -65,6 +73,7 @@ public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc 
 
     @Override
     public void update(StudentEntityJdbc student) {
+        log.trace("update() is called");
         jdbcTemplate.update(
         "UPDATE student SET "
                 + "first_name = ?, last_name = ?, "
@@ -79,12 +88,14 @@ public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc 
 
     @Override
     public void delete(int id) {
+        log.trace("delete() is called");
         String update = "DELETE FROM student WHERE id = ?";
         jdbcTemplate.update(update, id);
     }
 
     @Override
     public void deleteAll() {
+        log.trace("deleteAll() is called");
         String update = "TRUNCATE TABLE student";
         jdbcTemplate.update(update);
     }
