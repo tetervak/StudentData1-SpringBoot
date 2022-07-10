@@ -26,7 +26,7 @@ public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc 
 
     public StudentDataRepositoryJdbcImpl(
             NamedParameterJdbcTemplate namedParameterJdbcTemplate,
-            JdbcTemplate jdbcTemplate){
+            JdbcTemplate jdbcTemplate) {
         log.trace("constructor is called");
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.jdbcTemplate = jdbcTemplate;
@@ -42,12 +42,13 @@ public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc 
         SqlParameterSource params = new BeanPropertySqlParameterSource(student);
         GeneratedKeyHolder keys = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(update, params, keys);
-        student.setId(keys.getKey()!=null?keys.getKey().intValue():0);
+        student.setId(keys.getKey() != null ? keys.getKey().intValue() : 0);
     }
 
     @Override
     public StudentEntityJdbc get(int id) {
         log.trace("get() is called");
+        log.debug("retrieving student record for id=" + id);
         String query = "SELECT * FROM student WHERE id = :id";
         MapSqlParameterSource params = new MapSqlParameterSource();
         StudentEntityJdbc student = null;
@@ -57,6 +58,7 @@ public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc 
             student = namedParameterJdbcTemplate.queryForObject(
                     query, params, rowMapper);
         } catch (DataAccessException e) {
+            log.debug("the student data for given id={} could not be retrieved", id);
             // the code above throws an exception if the record is not found
         }
         return student;
@@ -66,29 +68,30 @@ public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc 
     public List<StudentEntityJdbc> getAll() {
         log.trace("getAll() is called");
         RowMapper<StudentEntityJdbc> rowMapper = new BeanPropertyRowMapper<>(StudentEntityJdbc.class);
-        return jdbcTemplate.query(
+        List<StudentEntityJdbc> list = jdbcTemplate.query(
                 "SELECT * FROM student ORDER BY last_name, first_name",
                 rowMapper);
+        log.debug("retrieved list of {} student records", list.size());
+        return list;
     }
 
     @Override
     public void update(StudentEntityJdbc student) {
         log.trace("update() is called");
-        jdbcTemplate.update(
-        "UPDATE student SET "
-                + "first_name = ?, last_name = ?, "
-                + "program_name = ?, program_year = ?, "
-                + "program_coop = ?, program_internship = ? "
-                + "WHERE id = ?",
-                student.getFirstName().trim(), student.getLastName().trim(),
-                student.getProgramName(), student.getProgramYear(),
-                student.isProgramCoop(), student.isProgramInternship(),
-                student.getId());
+        log.debug("updating student record id=" + student.getId());
+        SqlParameterSource params = new BeanPropertySqlParameterSource(student);
+        namedParameterJdbcTemplate.update(
+                "UPDATE student SET "
+                        + "first_name = :firstName, last_name = :lastName, "
+                        + "program_name = :programName, program_year = :programYear, "
+                        + "program_coop = :programCoop, program_internship = :programIntership "
+                        + "WHERE id = :id", params);
     }
 
     @Override
     public void delete(int id) {
         log.trace("delete() is called");
+        log.debug("deleting student record for id=" + id);
         String update = "DELETE FROM student WHERE id = ?";
         jdbcTemplate.update(update, id);
     }
@@ -96,6 +99,7 @@ public class StudentDataRepositoryJdbcImpl implements StudentDataRepositoryJdbc 
     @Override
     public void deleteAll() {
         log.trace("deleteAll() is called");
+        log.debug("deleting all student records");
         String update = "TRUNCATE TABLE student";
         jdbcTemplate.update(update);
     }

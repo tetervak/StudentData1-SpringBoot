@@ -62,6 +62,7 @@ public class StudentDataServiceJdbcImpl implements StudentDataService {
             copyEntityToForm(student, form);
             return form;
         }else{
+            log.debug("the retrieved data for student id={} is null", id);
             return null;
         }
 
