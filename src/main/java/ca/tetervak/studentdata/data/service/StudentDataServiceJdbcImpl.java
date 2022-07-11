@@ -4,6 +4,7 @@ package ca.tetervak.studentdata.data.service;
 import ca.tetervak.studentdata.model.StudentForm;
 import ca.tetervak.studentdata.data.repository.StudentDataRepositoryJdbc;
 import ca.tetervak.studentdata.data.repository.StudentEntityJdbc;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Slf4j
 @Service
 public class StudentDataServiceJdbcImpl implements StudentDataService {
-
-    private final Logger log = LoggerFactory.getLogger(StudentDataService.class);
 
     StudentDataRepositoryJdbc studentDataRepositoryJdbc;
 
