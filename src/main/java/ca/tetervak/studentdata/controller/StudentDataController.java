@@ -2,8 +2,7 @@ package ca.tetervak.studentdata.controller;
 
 import ca.tetervak.studentdata.model.StudentForm;
 import ca.tetervak.studentdata.data.service.StudentDataService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,10 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+@Slf4j
 @Controller
 public class StudentDataController {
-
-    private final Logger log = LoggerFactory.getLogger(StudentDataController.class);
 
     private static final String[] programs = {
             "--- Select Program ---",
