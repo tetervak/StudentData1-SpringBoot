@@ -1,8 +1,11 @@
 package ca.tetervak.studentdata.model;
 
+import lombok.Data;
+
 import javax.validation.constraints.*;
 import java.io.Serializable;
 
+@Data
 public class StudentForm implements Serializable {
 
     private int id = 0;
@@ -30,76 +33,5 @@ public class StudentForm implements Serializable {
 
     private boolean programInternship = false;
 
-    public StudentForm() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getProgramName() {
-        return programName;
-    }
-
-    public void setProgramName(String program) {
-        this.programName = program;
-    }
-
-    public int getProgramYear() {
-        return programYear;
-    }
-
-    public void setProgramYear(int year) {
-        this.programYear = year;
-    }
-
-    public boolean isProgramCoop() {
-        return programCoop;
-    }
-
-    public void setProgramCoop(boolean coop) {
-        this.programCoop = coop;
-    }
-
-    public boolean isProgramInternship() {
-        return programInternship;
-    }
-
-    public void setProgramInternship(boolean internship) {
-        this.programInternship = internship;
-    }
-
-    @Override
-    public String toString() {
-        return "StudentForm{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", programName='" + programName + '\'' +
-                ", programYear=" + programYear +
-                ", programCoop=" + programCoop +
-                ", programInternship=" + programInternship +
-                '}';
-    }
 }
 
