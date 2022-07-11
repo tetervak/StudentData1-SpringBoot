@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+@SuppressWarnings("SameReturnValue")
 @Slf4j
 @Controller
 public class StudentDataController {

@@ -5,8 +5,6 @@ import ca.tetervak.studentdata.model.StudentForm;
 import ca.tetervak.studentdata.data.repository.StudentDataRepositoryJdbc;
 import ca.tetervak.studentdata.data.repository.StudentEntityJdbc;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ import java.util.List;
 @Service
 public class StudentDataServiceJdbcImpl implements StudentDataService {
 
-    StudentDataRepositoryJdbc studentDataRepositoryJdbc;
+    final StudentDataRepositoryJdbc studentDataRepositoryJdbc;
 
     public StudentDataServiceJdbcImpl(StudentDataRepositoryJdbc repository){
         log.trace("constructor is called");
