@@ -60,7 +60,8 @@ public class StudentDataController {
             log.trace("the user inputs are correct");
             studentDataService.insertStudentForm(form);
             log.debug("id = " + form.getId());
-            return "redirect:confirm-insert/" + form.getId();
+            model.addAttribute("form", form);
+            return "ConfirmInsert";
         }
     }
 
