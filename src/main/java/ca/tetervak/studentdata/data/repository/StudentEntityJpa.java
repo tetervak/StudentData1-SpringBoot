@@ -1,9 +1,12 @@
 package ca.tetervak.studentdata.data.repository;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Data
 @Table(name = "student")
 public class StudentEntityJpa {
 
@@ -29,63 +32,4 @@ public class StudentEntityJpa {
 
     @Column(name = "program_internship")
     private Boolean programInternship = false;
-
-    public StudentEntityJpa() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getProgramName() {
-        return programName;
-    }
-
-    public void setProgramName(String programName) {
-        this.programName = programName;
-    }
-
-    public Integer getProgramYear() {
-        return programYear;
-    }
-
-    public void setProgramYear(Integer programYear) {
-        this.programYear = programYear;
-    }
-
-    public Boolean isProgramCoop() {
-        return programCoop;
-    }
-
-    public void setProgramCoop(Boolean programCoop) {
-        this.programCoop = programCoop;
-    }
-
-    public Boolean isProgramInternship() {
-        return programInternship;
-    }
-
-    public void setProgramInternship(Boolean programInternship) {
-        this.programInternship = programInternship;
-    }
 }
