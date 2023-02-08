@@ -3,6 +3,7 @@ package ca.tetervak.studentdata.data.repository;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Table(name = "student")
 public class StudentEntityJpa {
 

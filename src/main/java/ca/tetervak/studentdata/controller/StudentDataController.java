@@ -147,7 +147,7 @@ public class StudentDataController {
         try {
             studentDataService.deleteStudentForm(Integer.parseInt(id));
         } catch (NumberFormatException e) {
-            log.trace("the id is missing or not an integer");
+            log.error("the id is missing or not an integer");
         }
         return "redirect:list-students";
     }
