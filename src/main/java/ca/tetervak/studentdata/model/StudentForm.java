@@ -1,8 +1,8 @@
 package ca.tetervak.studentdata.model;
 
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 
 @Data

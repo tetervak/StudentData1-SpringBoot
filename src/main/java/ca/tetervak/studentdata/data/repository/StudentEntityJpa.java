@@ -1,11 +1,12 @@
 package ca.tetervak.studentdata.data.repository;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
+
 
 @Entity
 @NoArgsConstructor
